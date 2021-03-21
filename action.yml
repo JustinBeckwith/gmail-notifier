@@ -1,0 +1,40 @@
+name: 'Gmail Sender'
+author: 'Justin Beckwith'
+description: 'A GitHub Action that sends email from your gmail account.'
+branding:
+  icon: 'link'
+  color: 'purple'
+inputs:
+  from:
+    description: 'Email from which the message should be sent.'
+    required: true
+  to:
+    description: 'List of email addresses to which the email should be sent.'
+    required: true
+  cc:
+    description: 'List of email addresses to put on the CC line.'
+    required: false
+  bcc:
+    description: 'List of email addresses to put on the BCC line.'
+    required: false
+  subject:
+    description: 'Subject for the email.'
+    required: true
+  body:
+    description: 'Text to be placed in the body of the email'
+    required: true
+  serviceAccountJson:
+    description: 'A base64 encoded string that contains the full JSON used for your Service Account (see the README for details).'
+    required: true
+  refreshToken:
+    description: 'A long lived refresh token with the appropriate permissions and scopes to send an email (see the README for details).  One of refreshToken or accessToken must be defined.'
+    required: false
+  accessToken:
+    description: 'An optional short-lived access token with the appropriate permissions and scopes to send an email. One of refreshToken or accessToken must be defined.'
+    required: false
+outputs:
+  results:
+    description: 'The full API response from the Gmail API.'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
